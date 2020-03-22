@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -15,6 +12,14 @@ namespace WebApplication1.Controllers
         public string GetStudent(string orderBy)
         {
             return $"Kowalski, Malewski, Andrzejewski, orderBy={orderBy}";
+        }
+
+        [HttpPost]
+        public IActionResult CreateStudent(Student student)
+        {
+            Console.WriteLine("post");
+            student.indexNumber = $"s{new Random().Next(1, 20000)}";
+            return Ok(student);
         }
     }
 }
